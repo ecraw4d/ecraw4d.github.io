@@ -14,20 +14,28 @@
             align-items: center;
             min-height: 100vh;
         }
-        
+
+        figure {
+            text-align: center;
+        }
+
         .centered-image {
             max-width: 80%;
             max-height: 80vh;
             display: block;
+            margin: 0 auto;
+        }
+
+        figcaption {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <img src="IMG_7368.JPG" alt="Your Image" class="centered-image">
-</body>
-<body>
-    <p style="font-family: 'Comic Sans MS', 'Comic Sans', cursive;">
-    Turd
-  </p>
+    <figure>
+        <img src="IMG_7368.JPG" alt="Your Image" class="centered-image">
+        <figcaption>Turd</figcaption>
+    </figure>
 </body>
 </html>
