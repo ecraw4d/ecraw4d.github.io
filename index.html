@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
+    <title>Charles Hardin Hardin 2005-2025</title>
     <style>
         body {
             margin: 0;
@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            cursor: pointer; /* hint to user that click is possible */
+            cursor: pointer;
         }
 
         figure {
@@ -35,24 +35,40 @@
 </head>
 <body>
     <figure>
-        <img src="IMG_7368.JPG" alt="Your Image" class="centered-image">
-        <figcaption>Charles Hardin Hardin 2005-2025</figcaption>
+        <img src="https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+             alt="Memory of Charles" class="centered-image" id="mainImage">
+        <figcaption>Charles "Chuck" Hardin Hardin</figcaption>
         <audio id="bg-audio" loop>
             <source src="polog.mp3" type="audio/mp3">
             <source src="polog2.ogg" type="audio/ogg">
-            Your browser does not suport the audio element.
+            Your browser does not support the audio element.
         </audio>
     </figure>
 
     <script>
         const audio = document.getElementById("bg-audio");
-
+        const imageElement = document.getElementById("mainImage");
+        
+        // Replace these with your actual image paths
+        const images = [
+            "IMG_7368.JPG",
+            "IMG_2892.jpg"
+        ];
+        
+        let currentImageIndex = 0;
+        
         // Try to autoplay immediately
         audio.play().catch(() => {
             // If autoplay fails, wait for user interaction
             document.body.addEventListener("click", () => {
                 audio.play();
             }, { once: true });
+        });
+        
+        // Switch images on click
+        document.body.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            imageElement.src = images[currentImageIndex];
         });
     </script>
 </body>
