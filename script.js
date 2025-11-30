@@ -23,7 +23,7 @@ circle.bindPopup("I am a circle.");
 // Add a polygon
 var polygon = L.polygon([
     [47.618, -122.38],
-    [47.618, -122.39,
+    [47.618, -122.39],
     [47.618, -122.392]
 ]).addTo(map);
 polygon.bindPopup("I am a polygon.");
