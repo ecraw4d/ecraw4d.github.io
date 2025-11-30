@@ -1,5 +1,22 @@
+/* Map container styling */
+#map {
+    height: 600px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Basic page styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
 }
