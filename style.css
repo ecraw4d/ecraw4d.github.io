@@ -1,26 +1,92 @@
-/* Reset any default margins/padding */
+/* Reset defaults */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Map container styling - HEIGHT IS CRITICAL */
-#map {
-    height: 600px;
-    width: 100%;
-    margin: 20px auto;
-}
-
-/* Basic page styling */
 body {
     font-family: "Times New Roman", Times, serif;
-    padding: 20px;
     background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+/* Container to center content and limit width */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Nav Styling */
+header {
+    background-color: #2c3e50; /* Dark blue-grey */
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    display: inline-block;
+    font-size: 1.8rem;
+}
+
+nav {
+    float: right; /* Puts nav to the right */
+    margin-top: 5px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffd700; /* Gold color on hover */
+}
+
+/* Section Styling */
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 10px;
     margin-bottom: 20px;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Map Styling */
+#map {
+    height: 500px; /* Adjusted height */
+    width: 100%;
+    border: 5px solid white; /* Adds a nice white frame */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Adds a drop shadow */
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #ddd;
+    margin-top: 50px;
+    font-size: 0.9rem;
 }
