@@ -29,4 +29,20 @@ function style(feature) {
     };
 }
 
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront();
+}
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+}
+
 L.geoJson(statesData, {style: style}).addTo(map);
