@@ -20,17 +20,17 @@ function getColor(d) {
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.density),
         weight: 2,
         opacity: 1,
         color: 'white',
         dashArray: '3',
         fillOpacity: 0.7
+        fillColor: getColor(feature.properties.desnity)
     };
 }
 
 function highlightFeature(e) {
-    var layer = e.target;
+    const layer = e.target;
 
     layer.setStyle({
         weight: 5,
@@ -40,9 +40,52 @@ function highlightFeature(e) {
     });
 
     layer.bringToFront();
-}
-function resetHighlight(e) {
-    geojson.resetStyle(e.target);
-}
 
-L.geoJson(statesData, {style: style}).addTo(map);
+    info.update(layer.feature.properties);
+}
+const geojson = L.geoJson(statesData, {
+		style,
+		onEachFeature
+	}).addTo(map);
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+
+	map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+
+
+	const legend = L.control({position: 'bottomright'});
+
+	legend.onAdd = function (map) {
+
+		const div = L.DomUtil.create('div', 'info legend');
+		const grades = [0, 10, 20, 50, 100, 200, 500, 1000];
+		const labels = [];
+		let from, to;
+
+		for (let i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(`<i style="background:${getColor(from + 1)}"></i> ${from}${to ? `&ndash;${to}` : '+'}`);
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+	};
+
+	legend.addTo(map);
