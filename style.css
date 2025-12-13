@@ -6,9 +6,7 @@
 }
 
 body {
-    font-family: "Helvetica", sans-serif; /* Added fallback */
-    /* I changed this to the solid version. 
-       If you want it transparent again, use #fc5b5b6c */
+    font-family: "Helvetica", sans-serif; 
     background-color: #fc5b5b; 
     padding: 0; 
 }
@@ -18,18 +16,17 @@ nav {
     background-color: #421414;
     border-style: ridge;
     border-color: #ff0000;
-    padding: 10px; /* Increased padding slightly for looks */
+    padding: 10px; 
     display: flex; 
-    /* Removed justify-content because margin-right handles the spacing */
     align-items: center;
 }
 
 nav a {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-size: 0.9rem; /* Bumped up slightly for readability */
+    font-size: 0.9rem; 
     margin: 0 10px;
-    font-weight: normal; /* 'regular' is not a valid CSS keyword, use 'normal' */
+    font-weight: normal; 
 }
 
 nav a:hover {
@@ -37,10 +34,9 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* This pushes the 2nd, 3rd, and 4th links to the far right */
 nav a:first-child {
     margin-right: auto;
-    font-weight: bold; /* Optional: Makes the logo link bolder */
+    font-weight: bold; 
     font-size: 1.1rem;
 }
 
@@ -49,15 +45,15 @@ nav a:first-child {
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Optional: Adds a white box behind text so it's readable against the red bg */
-    min-height: 100vh; /* Optional: makes the white box stretch down */
+    background-color: rgba(255, 255, 255, 0.8); 
+    min-height: 100vh;
 }
 
 h1 {
     text-align: left;
     color: #000000;
     margin-bottom: 10px;
-    margin-top: 20px; /* Fixed the invalid 'px' error */
+    margin-top: 20px; 
 }
 
 p {
