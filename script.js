@@ -21,13 +21,13 @@ info.update = function (props) {
 info.addTo(map);
 
 function getColor(d) {
-    return d > 1000 ? '#800026' :
-        d > 500  ? '#BD0026' :
-        d > 200  ? '#E31A1C' :
-        d > 100  ? '#FC4E2A' :
-        d > 50   ? '#FD8D3C' :
-        d > 20   ? '#FEB24C' :
-        d > 10   ? '#FED976' : '#FFEDA0';
+    return d > 1000 ? '#FF1010' :
+        d > 500  ? '#DE1125' :
+        d > 200  ? '#BD123A' :
+        d > 100  ? '#9C134F' :
+        d > 50   ? '#7B1564' :
+        d > 20   ? '#5A1679' :
+        d > 10   ? '#39178E' : '#1919A4';
 }
 
 function style(feature) {
