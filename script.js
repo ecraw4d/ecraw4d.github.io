@@ -1,41 +1,32 @@
-// Initialize the map
-var map = L.map('map').setView([47.618, -122.321], 11);
+var map = L.map('map').setView([37.8, -96], 4);
 
-// Add OpenStreetMap tiles
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// Add a marker
-var marker = L.marker([47.618, -122.321]).addTo(map);
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+L.geoJson(statesData).addTo(map);
 
-// Add a circle
-var circle = L.circle([47.618, -122.321], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(map);
-circle.bindPopup("I am a circle.");
-
-// Add a polygon
-var polygon = L.polygon([
-    [47.618, -122.38],
-    [47.618, -122.39],
-    [47.618, -122.392]
-]).addTo(map);
-polygon.bindPopup("I am a polygon.");
-
-// Click event for the map
-var popup = L.popup();
-
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
+function getColor(d) {
+    return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
 }
 
-map.on('click', onMapClick);
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.density),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+L.geoJson(statesData, {style: style}).addTo(map);
