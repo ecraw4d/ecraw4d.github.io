@@ -68,3 +68,41 @@ p {
     margin: 20px auto;
     border: 2px solid #333;
 }
+
+.grid-layout {
+    display: flex;       
+    gap: 20px;           
+    margin-top: 0px;    
+    margin-bottom: 0px;
+}
+
+.grid-col-left, .grid-col-right {
+    flex: 1;            
+    display: flex;       
+    flex-direction: column;
+}
+
+.grid-img {
+    width: 100%;         
+    height: auto;        
+    display: block;     
+    margin-bottom: 15px; 
+}
+/* body text */
+.grid-description h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-transform: uppercase; 
+}
+
+.grid-description p {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .grid-layout {
+        flex-direction: column;
+    }
+}
