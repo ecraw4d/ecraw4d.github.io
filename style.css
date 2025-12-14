@@ -134,11 +134,14 @@ p {
 }
 
 @font-face {
-    font-family: 'ecraw'; /* Give it any name you want */
-    src: url('fonts/ZTOtez-Regular.ttf') format('tff'); /* Match your path & filename exactly */
+    font-family: 'ecraw'; 
+    src: url('fonts/ZTOtez-Regular.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
 }
+
 #special-text {
     font-family: 'ecraw', sans-serif;
+    font-weight: normal; 
+    font-size: 1.3rem; 
 }
