@@ -140,9 +140,14 @@ p {
     font-style: normal;
 }
 
-#special-text {
+#special-text2 {
     font-family: 'ecraw';
     font-weight: normal; 
     font-size: 1.5rem; 
     letter-spacing: 2px;
+}
+#special-text {
+    font-family: 'ecraw';
+    font-weight: normal; 
+    font-size: 0.9rem; 
 }
