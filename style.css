@@ -132,3 +132,10 @@ p {
     margin-right: 8px;
     opacity: 0.7;
 }
+
+@font-face {
+    font-family: 'ecraw'; /* Give it any name you want */
+    src: url('fonts/ZTOtez-Regular.ttf') format('tff'); /* Match your path & filename exactly */
+    font-weight: normal;
+    font-style: normal;
+}
