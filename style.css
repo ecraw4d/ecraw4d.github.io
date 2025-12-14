@@ -139,3 +139,6 @@ p {
     font-weight: normal;
     font-style: normal;
 }
+#special-text {
+    font-family: 'ecraw', sans-serif;
+}
