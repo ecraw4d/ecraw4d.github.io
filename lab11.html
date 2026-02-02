@@ -20,8 +20,24 @@
         <a href="https://www.ecraw.com" id="special-text2">ecraw.com</a>
         <a href="maps.html" id="special-text">maps</a>
         <a href="writing.html" id="special-text">my writing</a>
-        <a href="lab11.html" id="special-text">lab 11</a>
+        <a href="lab11.html" id="special-text">labs</a>
     </nav>
+    
+    <div class="container">
+        <h1>GGIS 517: Perceptual Design of Web Maps</h1>
+        <div id="map"></div>
+        <script>
+            const map = L.map('map').setView([40.11, -88.24], 13);
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            L.geoJSON(coffeeShops).addTo(map);
+            
+        </script>
+    </div>
+    
     <div class="container">
         <h1>GGIS 473: Lab 11</h1>
         <p>Below is an interactive choropleth map, displaying US popution density by state. This map was made using the <a href="https://leafletjs.com/examples/choropleth/">Interactive Chroropleth Map</a> tutorial from leafletjs.com</p>
