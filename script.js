@@ -1,9 +1,9 @@
-var map = L.map('map2').setView([37.8, -96], 4);
+var map2 = L.map('map2').setView([37.8, -96], 4);
 
 var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+}).addTo(map2);
 
 var info = L.control();
 
@@ -18,7 +18,7 @@ info.update = function (props) {
     this._div.innerHTML = `<h4>US Population Density</h4>${contents}`;
 };
 
-info.addTo(map);
+info.addTo(map2);
 
 function getColor(d) {
     return d > 1000 ? '#7a0177' :
