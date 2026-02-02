@@ -61,7 +61,7 @@ p {
 }
 
 /* Map container styling */
-#map {
+#map, #map2 {
     height: 600px;
     width: 100%;
     margin: 20px auto;
