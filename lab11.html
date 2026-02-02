@@ -26,14 +26,15 @@
     <div class="container">
         <h1>GGIS 517: Perceptual Design of Web Maps</h1>
         <div id="map"></div>
+        <script src="coffee-shops.js"></script>
         <script>
-            const map = L.map('map').setView([40.11, -88.24], 13);
+            const map1 = L.map('map').setView([40.11, -88.24], 13);
             // Add OpenStreetMap tile layer
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
-            L.geoJSON(coffeeShops).addTo(map);
+            }).addTo(map1);
+            L.geoJSON(coffeeShops).addTo(map1);
             
         </script>
     </div>
