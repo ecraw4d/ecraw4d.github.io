@@ -60,6 +60,15 @@ const yScale = d3.scaleBand()
     .domain(data.map(d => d.state))  // Input: array of state names
     .range([0, innerHeight])          // Output: 0 to chart height
     .padding(0.2);                    // Space between bars
+
+const svg = d3.select("#chart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// Create a group for the chart area, translated by the margins
+const chartArea = svg.append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
     </script>
 </body>
 </html>
