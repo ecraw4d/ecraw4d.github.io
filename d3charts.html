@@ -30,20 +30,6 @@ const data = [
     { state: "Illinois", population: 12.8 }
 ];
 
-const svg = d3.select("#chart")
-    .append("svg")
-    .attr("width", 600)
-    .attr("height", 300);
-
-// Create circles for each data point
-svg.selectAll("circle")
-    .data(data)
-    .join("circle")
-    .attr("cx", (d, i) => 50 + i * 90)
-    .attr("cy", 150)
-    .attr("r", d => d.population)
-    .attr("fill", "steelblue")
-    .attr("opacity", 0.7);
 // Define the chart dimensions
 const width = 600;
 const height = 400;
@@ -69,6 +55,16 @@ const svg = d3.select("#chart")
 // Create a group for the chart area, translated by the margins
 const chartArea = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+// Create circles for each data point
+svg.selectAll("circle")
+    .data(data)
+    .join("circle")
+    .attr("cx", (d, i) => 50 + i * 90)
+    .attr("cy", 150)
+    .attr("r", d => d.population)
+    .attr("fill", "steelblue")
+    .attr("opacity", 0.7);
     </script>
 </body>
 </html>
