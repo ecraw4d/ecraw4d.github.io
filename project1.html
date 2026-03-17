@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Population Density | ecraw.com</title>
+    <link rel="icon" type="image/png" href="images/favicon1.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <!-- menu -->
+    <nav>
+        <a href="https://ecraw.com" id="special-text2">ecraw.com</a>
+        <a href="maps.html" class="special-text">maps</a>
+        <a href="writing.html" class="special-text">my writing</a>
+        <a href="photography.html" class="special-text">photography</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Back Button -->
+        <a href="maps.html" class="ui-btn back-btn">&larr; Back to Maps</a>
+
+        <!-- Project Header -->
+        <div class="project-header">
+            <h1>US Population Density</h1>
+            <div class="project-badges">
+                <span class="project-badge">Interactive Leaflet</span>
+                <span class="project-badge">Choropleth</span>
+            </div>
+        </div>
+
+        <!-- The Map -->
+        <div id="project-map"></div>
+
+        <!-- The Writeup -->
+        <div class="project-writeup">
+            <h3>Overview</h3>
+            <p>This interactive web map visualizes population density across the United States using a choropleth technique. Data was sourced from the US Census Bureau.</p>
+            
+            <h3>Methodology</h3>
+            <p>The map was built using the Leaflet.js library. I classified the population density data into distinct bins and assigned a sequential color scheme to highlight areas of high concentration (like the Northeast corridor) versus lower density regions.</p>
+        </div>
+
+    </div>
+
+    <!-- The data file for the US States (you need this for the map to work!) -->
+    <script src="us-states.js"></script> 
+
+    <!-- The script for THIS specific map -->
+    <script src="project1.js"></script>
+    
+</body>
+</html>

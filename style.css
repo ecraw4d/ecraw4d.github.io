@@ -146,8 +146,192 @@ p {
     font-size: 1.5rem; 
     letter-spacing: 2px;
 }
-#special-text {
+
+/* Changed this from #special-text to .special-text */
+.special-text {
     font-family: 'ecraw';
     font-weight: normal; 
     font-size: 0.9rem; 
+}
+/* =========================
+   MAP GALLERY UI
+========================= */
+
+.layout-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.ui-btn {
+    background-color: #421414;
+    color: white;
+    border: 2px solid #000;
+    padding: 8px 15px;
+    font-family: 'ecraw', "Helvetica", sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+.ui-btn:hover {
+    background-color: #ffd700;
+    color: #000;
+}
+
+/* Gallery Layouts */
+#map-gallery {
+    display: grid;
+    gap: 25px;
+    transition: all 0.3s ease;
+}
+
+/* Grid View (Default) */
+.gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* List View */
+.gallery-list {
+    grid-template-columns: 1fr; /* 1 single column */
+}
+
+/* The Map Card */
+.map-card {
+    background-color: #fff;
+    border: 3px solid #421414;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Cool brutalist hover effect */
+.map-card:hover {
+    transform: translateY(-5px) translateX(-5px);
+    box-shadow: 8px 8px 0px #fc5b5b; /* Uses your background red */
+}
+
+.map-image-wrapper {
+    position: relative;
+    border-bottom: 3px solid #421414;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.map-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.map-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffd700;
+    color: #000;
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border: 2px solid #000;
+    text-transform: uppercase;
+}
+
+.map-info {
+    padding: 15px;
+}
+
+.map-info h3 {
+    margin-bottom: 8px;
+    color: #421414;
+    font-size: 1.2rem;
+}
+
+.map-info p {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 0;
+}
+
+/* How cards look when in LIST view */
+.gallery-list .map-card {
+    flex-direction: row;
+    align-items: center;
+}
+
+.gallery-list .map-image-wrapper {
+    width: 300px;
+    flex-shrink: 0;
+    border-bottom: none;
+    border-right: 3px solid #421414;
+    aspect-ratio: 4/3;
+}
+/* =========================
+   INDIVIDUAL PROJECT PAGES
+========================= */
+
+.back-btn {
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.project-header {
+    margin-bottom: 20px;
+    border-bottom: 3px solid #421414;
+    padding-bottom: 15px;
+}
+
+.project-header h1 {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.project-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Specific styling for the embedded map */
+#project-map {
+    height: 600px;
+    width: 100%;
+    border: 3px solid #421414;
+    background-color: #e5e5e5;
+    margin-bottom: 30px;
+    box-shadow: 8px 8px 0px #fc5b5b; /* Keeps the brutalist theme */
+}
+
+/* If the project is just a static image/PDF */
+.project-static-image {
+    width: 100%;
+    max-height: 800px;
+    object-fit: contain;
+    border: 3px solid #421414;
+    margin-bottom: 30px;
+    box-shadow: 8px 8px 0px #fc5b5b;
+}
+
+.project-writeup h3 {
+    color: #421414;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-size: 1.3rem;
+}
+/* Badges for the individual project pages */
+.project-badge {
+    background-color: #ffd700;
+    color: #000;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    display: inline-block;
+    box-shadow: 3px 3px 0px #421414; /* A cute mini shadow for the tags */
 }
