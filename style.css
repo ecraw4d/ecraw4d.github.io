@@ -11,7 +11,44 @@ body {
     padding: 0; 
 }
 
-/* menu bar style */
+/* =========================
+   TYPOGRAPHY
+========================= */
+@font-face {
+    font-family: 'ecraw'; 
+    src: url('fonts/Nonserif.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    text-align: left;
+    color: #000000;
+    margin-bottom: 10px;
+    margin-top: 20px; 
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+#special-text2 {
+    font-family: 'ecraw';
+    font-weight: normal; 
+    font-size: 1.5rem; 
+    letter-spacing: 2px;
+}
+
+.special-text {
+    font-family: 'ecraw';
+    font-weight: normal; 
+    font-size: 0.9rem; 
+}
+
+/* =========================
+   NAVIGATION & LAYOUT
+========================= */
 nav {
     background-color: #421414;
     border-style: ridge;
@@ -40,7 +77,6 @@ nav a:first-child {
     font-size: 1.1rem;
 }
 
-/* CONTENT CONTAINER */
 .container {
     margin: 0 auto;
     padding: 20px;
@@ -48,26 +84,7 @@ nav a:first-child {
     min-height: 100vh;
 }
 
-h1 {
-    text-align: left;
-    color: #000000;
-    margin-bottom: 10px;
-    margin-top: 20px; 
-}
-
-p {
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-/* Map container styling */
-#map, #map2 {
-    height: 600px;
-    width: 100%;
-    margin: 20px auto;
-    border: 2px solid #333;
-}
-
+/* HOMEPAGE GRID */
 .grid-layout {
     display: flex;       
     gap: 20px;           
@@ -89,7 +106,7 @@ p {
     display: block;     
     margin-bottom: 15px; 
 }
-/* body text */
+
 .grid-description h3 {
     font-size: 1.1rem;
     font-weight: bold;
@@ -106,6 +123,19 @@ p {
     .grid-layout {
         flex-direction: column;
     }
+}
+
+/* =========================
+   LEAFLET MAP CONTROLS
+========================= */
+#map, #map2, #project-map {
+    height: 600px;
+    width: 100%;
+    margin: 20px auto;
+    border: 3px solid #421414;
+    background-color: #e5e5e5;
+    margin-bottom: 30px;
+    box-shadow: 8px 8px 0px #fc5b5b;
 }
 
 .info {
@@ -133,30 +163,9 @@ p {
     opacity: 0.7;
 }
 
-@font-face {
-    font-family: 'ecraw'; 
-    src: url('fonts/Nonserif.ttf') format('truetype'); 
-    font-weight: normal;
-    font-style: normal;
-}
-
-#special-text2 {
-    font-family: 'ecraw';
-    font-weight: normal; 
-    font-size: 1.5rem; 
-    letter-spacing: 2px;
-}
-
-/* Changed this from #special-text to .special-text */
-.special-text {
-    font-family: 'ecraw';
-    font-weight: normal; 
-    font-size: 0.9rem; 
-}
 /* =========================
    MAP GALLERY UI
 ========================= */
-
 .layout-controls {
     display: flex;
     justify-content: flex-end;
@@ -180,24 +189,20 @@ p {
     color: #000;
 }
 
-/* Gallery Layouts */
 #map-gallery {
     display: grid;
     gap: 25px;
     transition: all 0.3s ease;
 }
 
-/* Grid View (Default) */
 .gallery-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-/* List View */
 .gallery-list {
-    grid-template-columns: 1fr; /* 1 single column */
+    grid-template-columns: 1fr;
 }
 
-/* The Map Card */
 .map-card {
     background-color: #fff;
     border: 3px solid #421414;
@@ -208,10 +213,9 @@ p {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Cool brutalist hover effect */
 .map-card:hover {
     transform: translateY(-5px) translateX(-5px);
-    box-shadow: 8px 8px 0px #fc5b5b; /* Uses your background red */
+    box-shadow: 8px 8px 0px #fc5b5b; 
 }
 
 .map-image-wrapper {
@@ -257,7 +261,6 @@ p {
     margin-bottom: 0;
 }
 
-/* How cards look when in LIST view */
 .gallery-list .map-card {
     flex-direction: row;
     align-items: center;
@@ -270,10 +273,10 @@ p {
     border-right: 3px solid #421414;
     aspect-ratio: 4/3;
 }
+
 /* =========================
    INDIVIDUAL PROJECT PAGES
 ========================= */
-
 .back-btn {
     text-decoration: none;
     display: inline-block;
@@ -297,17 +300,6 @@ p {
     flex-wrap: wrap;
 }
 
-/* Specific styling for the embedded map */
-#project-map {
-    height: 600px;
-    width: 100%;
-    border: 3px solid #421414;
-    background-color: #e5e5e5;
-    margin-bottom: 30px;
-    box-shadow: 8px 8px 0px #fc5b5b; /* Keeps the brutalist theme */
-}
-
-/* If the project is just a static image/PDF */
 .project-static-image {
     width: 100%;
     max-height: 800px;
@@ -323,7 +315,7 @@ p {
     margin-top: 20px;
     font-size: 1.3rem;
 }
-/* Badges for the individual project pages */
+
 .project-badge {
     background-color: #ffd700;
     color: #000;
@@ -333,14 +325,414 @@ p {
     border: 2px solid #000;
     text-transform: uppercase;
     display: inline-block;
-    box-shadow: 3px 3px 0px #421414; /* A cute mini shadow for the tags */
+    box-shadow: 3px 3px 0px #421414;
 }
-/* Styling for embedded iframes (like ArcGIS StoryMaps) */
+
 .storymap-iframe {
     width: 100%;
-    height: 700px; /* Made it a bit taller for StoryMaps */
+    height: 700px; 
     border: 3px solid #421414;
     margin-bottom: 30px;
     box-shadow: 8px 8px 0px #fc5b5b;
     background-color: #fff;
+}
+
+/* =========================
+   V2: DIGITAL RESUME STYLES
+========================= */
+.resume-container {
+    padding-top: 0; /* Let the marquee breathe */
+}
+
+/* --- MARQUEE BANNER --- */
+.marquee-container {
+    width: 100%;
+    background-color: #ffd700;
+    border-bottom: 3px solid #421414;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+    box-shadow: 0px 5px 0px rgba(0,0,0,0.1);
+}
+
+.marquee-text {
+    display: inline-block;
+    font-family: 'ecraw', "Helvetica", sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #421414;
+    text-transform: uppercase;
+    animation: scrollMarquee 20s linear infinite;
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- HERO SECTION --- */
+.resume-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 4px solid #421414;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    box-shadow: 10px 10px 0px #421414;
+}
+
+.hero-info {
+    padding: 30px;
+    flex: 2;
+    border-right: 4px solid #421414;
+}
+
+.hero-info h1 {
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #421414;
+}
+
+.hero-badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.hero-badge {
+    background-color: #421414;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid #000;
+}
+
+.hero-action {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fc5b5b;
+    transition: background-color 0.3s;
+}
+
+.hero-action:hover {
+    background-color: #ffd700;
+}
+
+.giant-download-btn {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #421414;
+}
+
+.dl-icon {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.dl-text {
+    font-family: 'ecraw', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* --- SECTION HEADERS & FILTERS --- */
+.resume-section {
+    margin-bottom: 50px;
+}
+
+.section-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #421414;
+    padding-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.section-title {
+    background-color: #421414;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 15px;
+    margin: 0;
+    border: 2px solid #000;
+    text-transform: uppercase;
+}
+
+.skills-filter {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: #fff;
+    color: #421414;
+    border: 2px solid #421414;
+    padding: 6px 12px;
+    font-family: 'ecraw', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background-color: #fc5b5b;
+    color: #fff;
+}
+
+.filter-btn.active {
+    background-color: #ffd700;
+    box-shadow: 3px 3px 0px #421414;
+    transform: translate(-2px, -2px);
+}
+
+/* --- INTERACTIVE SKILLS GRID --- */
+.skills-grid-interactive {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    background-color: #fff;
+    border: 3px solid #421414;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 4px 4px 0px rgba(66, 20, 20, 0.1);
+}
+
+/* State when filtered out */
+.skill-card.dimmed {
+    opacity: 0.2;
+    transform: scale(0.95);
+    filter: grayscale(100%);
+    box-shadow: none;
+}
+
+.skill-card:hover:not(.dimmed) {
+    transform: translateY(-5px) translateX(-5px);
+    box-shadow: 6px 6px 0px #fc5b5b;
+    border-color: #000;
+}
+
+.local-icon {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.skill-card span {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* --- V2 TIMELINE CARDS --- */
+.timeline-interactive {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.timeline-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 3px solid #421414;
+    position: relative;
+    padding: 25px 25px 25px 40px; /* Extra left padding for the bold border */
+    transition: all 0.2s;
+}
+
+/* The aggressive left accent border */
+.timeline-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    background-color: #fc5b5b;
+    border-right: 3px solid #421414;
+    transition: background-color 0.2s;
+}
+
+.timeline-card:hover {
+    transform: translateX(10px);
+    box-shadow: -8px 8px 0px #ffd700, -8px 8px 0px 3px #421414;
+}
+
+.timeline-card:hover::before {
+    background-color: #ffd700;
+}
+
+.card-date {
+    display: inline-block;
+    background-color: #421414;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border: 2px solid #000;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px dashed #fc5b5b;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    gap: 20px;
+}
+
+.card-titles h3 {
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+    color: #421414;
+}
+
+.card-titles h4 {
+    font-weight: normal;
+    color: #555;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.card-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    background: #fff;
+    border: 2px solid #421414;
+    padding: 4px;
+    box-shadow: 2px 2px 0px #fc5b5b;
+}
+
+/* Resume inline links */
+.resume-link {
+    color: #421414;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.resume-link:hover {
+    color: #fc5b5b; 
+    background-color: #ffd700; 
+    text-decoration: none;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .resume-hero {
+        flex-direction: column;
+    }
+    .hero-info {
+        border-right: none;
+        border-bottom: 4px solid #421414;
+    }
+    .hero-action {
+        padding: 20px 0;
+    }
+    .card-header {
+        flex-direction: column-reverse;
+    }
+    .card-logo {
+        margin-bottom: 10px;
+    }
+}
+/* --- BRUTALIST CONTACT STRIP --- */
+.contact-strip {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border: 4px solid #421414;
+    margin-bottom: 50px;
+    box-shadow: 8px 8px 0px #fc5b5b;
+}
+
+.contact-item {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+    border-right: 4px solid #421414;
+    text-decoration: none;
+    color: #421414;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Remove the right border on the last item so it doesn't double up */
+.contact-item:last-child {
+    border-right: none;
+}
+
+/* Hover effect for the clickable links */
+a.contact-item:hover {
+    background-color: #ffd700;
+    transform: translateY(4px); /* Pushes the button down slightly */
+    box-shadow: inset 0px 4px 0px rgba(0,0,0,0.1); /* Inner shadow for a pressed effect */
+}
+
+/* The small categorical label (EMAIL, LINKEDIN, etc) */
+.contact-label {
+    font-family: 'ecraw', "Helvetica", sans-serif;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #fc5b5b;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Make sure the label stays dark red when hovered over */
+a.contact-item:hover .contact-label {
+    color: #421414;
+}
+
+.contact-value {
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+/* Mobile Adjustments for Contact Strip */
+@media (max-width: 768px) {
+    .contact-strip {
+        flex-direction: column;
+    }
+    .contact-item {
+        border-right: none;
+        border-bottom: 4px solid #421414;
+    }
+    .contact-item:last-child {
+        border-bottom: none;
+    }
 }
