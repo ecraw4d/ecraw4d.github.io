@@ -340,9 +340,8 @@ nav a:first-child {
 /* =========================
    V2: DIGITAL RESUME STYLES
 ========================= */
-.resume-container {
-    padding-top: 0; /* Let the marquee breathe */
-}
+/*.resume-container {
+    padding-top: 0; /* Let the marquee breathe */*/
 
 /* --- MARQUEE BANNER --- */
 .marquee-container {
