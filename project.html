@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project | ecraw.com</title>
+    <link rel="icon" type="image/png" href="images/favicon1.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- menu -->
+    <nav>
+        <a href="https://ecraw.com" id="special-text2">ecraw.com</a>
+        <a href="maps.html" class="special-text">maps</a>
+        <a href="writing.html" class="special-text">my writing</a>
+        <a href="photography.html" class="special-text">photography</a>
+        <a href="resume.html" class="special-text">resume</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Back Button -->
+        <a href="maps.html" class="ui-btn back-btn">&larr; Back to Maps</a>
+
+        <!-- Project Header (populated by JS) -->
+        <div class="project-header">
+            <h1 id="project-title"></h1>
+            <div class="project-badges" id="project-badges"></div>
+        </div>
+
+        <!-- Content block: Leaflet map / iframe / image / PDF (populated by JS) -->
+        <div id="project-content"></div>
+
+        <!-- Writeup (populated by JS) -->
+        <div class="project-writeup" id="project-writeup">
+            <h3>Overview</h3>
+            <p id="overview-text"></p>
+            <h3>Methodology</h3>
+            <p id="methodology-text"></p>
+        </div>
+
+    </div>
+
+    <!-- Data file must load first so PROJECTS is available -->
+    <script src="projects-data.js"></script>
+    <script>
+        var params = new URLSearchParams(window.location.search);
+        var id = parseInt(params.get('id'));
+        var project = PROJECTS.find(function(p) { return p.id === id; });
+
+        if (!project) {
+            document.title = 'Project Not Found | ecraw.com';
+            document.getElementById('project-title').textContent = 'Project Not Found';
+            document.getElementById('project-writeup').style.display = 'none';
+        } else {
+            // Page title
+            document.title = project.title + ' | ecraw.com';
+
+            // Header
+            document.getElementById('project-title').textContent = project.title;
+            var badgesEl = document.getElementById('project-badges');
+            project.badges.forEach(function(b) {
+                var span = document.createElement('span');
+                span.className = 'project-badge';
+                span.textContent = b;
+                badgesEl.appendChild(span);
+            });
+
+            // Content block
+            var contentEl = document.getElementById('project-content');
+
+            if (project.type === 'leaflet') {
+                // Inject Leaflet CSS
+                var leafletCSS = document.createElement('link');
+                leafletCSS.rel = 'stylesheet';
+                leafletCSS.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+                document.head.appendChild(leafletCSS);
+                // Map container
+                contentEl.innerHTML = '<div id="project-map"></div>';
+                // Load Leaflet JS, then project-specific scripts sequentially
+                loadScriptChain(
+                    ['https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'].concat(project.scripts || []),
+                    0
+                );
+
+            } else if (project.type === 'iframe') {
+                var iframe = document.createElement('iframe');
+                iframe.src = project.src;
+                iframe.className = 'storymap-iframe';
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allowfullscreen', '');
+                iframe.setAttribute('allow', 'geolocation');
+                contentEl.appendChild(iframe);
+
+            } else if (project.type === 'image') {
+                var img = document.createElement('img');
+                img.src = project.src;
+                img.alt = project.title;
+                img.className = 'project-static-image';
+                contentEl.appendChild(img);
+
+            } else if (project.type === 'pdf') {
+                contentEl.innerHTML =
+                    '<div class="pdf-viewer-wrap">' +
+                        '<object data="' + project.src + '" type="application/pdf" class="pdf-embed">' +
+                            '<p>PDF could not be displayed. <a href="' + project.src + '" target="_blank" class="ui-btn">Open PDF &rarr;</a></p>' +
+                        '</object>' +
+                    '</div>';
+            }
+
+            // Writeup
+            document.getElementById('overview-text').textContent = project.overview || '';
+            document.getElementById('methodology-text').textContent = project.methodology || '';
+        }
+
+        // Load an array of scripts one at a time, in order
+        function loadScriptChain(srcs, index) {
+            if (index >= srcs.length) return;
+            var s = document.createElement('script');
+            s.src = srcs[index];
+            s.onload = function() { loadScriptChain(srcs, index + 1); };
+            document.body.appendChild(s);
+        }
+    </script>
+
+</body>
+</html>
