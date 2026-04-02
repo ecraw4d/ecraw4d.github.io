@@ -3,30 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethan Crawford - Writing</title>
-    <link rel="icon" type="image/png" href="images/iecraw3.png">
+    <title>Writing | ecraw.com</title>
+    <link rel="icon" type="image/png" href="images/favicon1.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- menu -->
     <nav>
-        <a href="https://www.ecraw.com" id="special-text2">ecraw.com</a>
-        <a href="maps.html" id="special-text">maps</a>
-        <a href="writing.html" id="special-text">my writing</a>
-        <a href="lab11.html" id="special-text">lab 11</a>
+        <a href="https://ecraw.com" id="special-text2">ecraw.com</a>
+        <a href="maps.html" class="special-text">maps</a>
+        <a href="writing.html" class="special-text">my writing</a>
+        <a href="photography.html" class="special-text">photography</a>
+        <a href="resume.html" class="special-text">resume</a>
     </nav>
 
     <div class="container">
-        <h1>Writing Samples</h1>
-        
-        <h3>Something I've written</h3>
-        <p>Placeholder</p>
-        
-        <br>
 
-        <h3>Something else I've written</h3>
-        <p>Placeholder2</p>
+        <h1>Writing</h1>
+        <p>Research papers, planning essays, and technical reports. Use arrow keys or click to browse.</p>
+
+        <!-- ===================== Browser Section ===================== -->
+        <div class="writing-browser">
+
+            <!-- Left: Menu list -->
+            <div class="writing-nav">
+                <div class="writing-nav-header">MY WRITING</div>
+                <ul class="writing-nav-list" id="writing-nav-list" role="listbox" aria-label="Writing pieces"></ul>
+            </div>
+
+            <!-- Right: Card detail -->
+            <div class="writing-card-panel" id="writing-card-panel">
+                <div class="writing-card-empty">← select a piece</div>
+            </div>
+
+        </div>
+
+        <!-- ===================== Minimalist List ===================== -->
+        <div class="writing-list-section">
+            <h2 class="section-title">All Writing</h2>
+            <div class="writing-list" id="writing-list"></div>
+        </div>
+
     </div>
+
+    <script>
+        // ─── Writing data ───────────────────────────────────────────────
+        // To add a piece: append an object here and drop the file in assets/writing/
+        const WRITINGS = [
+            {
+                title: "Political Economy of the AWO, 1915–1917",
+                category: "Research Paper",
+                year: "2026",
+                desc: "An archival and spatial study of the Agricultural Workers Organization's organizing campaign across the American Midwest, integrating 1910 and 1920 U.S. Census data to map labor migration patterns and economic conditions shaping early farm worker unionism.",
+                file: "assets/writing/awo-political-economy.pdf",
+                type: "PDF"
+            },
+            {
+                title: "Segregation and the City: Santiago, Chile",
+                category: "Urban Planning Essay",
+                year: "2025",
+                desc: "An analysis of spatial division and historical segregation in Santiago, combining GIS mapping with urban planning theory to examine how policy shaped the city's socio-economic landscape. Produced alongside the ArcGIS StoryMap project.",
+                file: "assets/writing/santiago-segregation.pdf",
+                type: "PDF"
+            },
+            {
+                title: "Pakistan Flood GIS: Balochistan Region",
+                category: "Technical Report",
+                year: "2024",
+                desc: "Documentation of GIS dataset editing, QA/QC methodology, and StoryMap deliverables produced during a research assistantship analyzing climate vulnerability and infrastructure response data from the 2022 Pakistan floods.",
+                file: "assets/writing/pakistan-flood-report.pdf",
+                type: "PDF"
+            },
+            {
+                title: "Thermal Indicators of Crop Heat Stress Before NDVI Decline",
+                category: "Remote Sensing Analysis",
+                year: "2024",
+                desc: "Spatial analysis using ENVI and Google Earth Engine to identify thermal band indicators of crop heat stress preceding NDVI decline, applied to agricultural regions in the American Midwest.",
+                file: "assets/writing/crop-heat-stress.pdf",
+                type: "PDF"
+            },
+            {
+                title: "Spatial Analysis of Environmental Health Risks in Seattle",
+                category: "GIS Research Paper",
+                year: "2024",
+                desc: "An intersectional GIS analysis of environmental health risks across Seattle census tracts, combining noise exposure, air toxicity, water toxicity, and PM2.5 concentration data with 2019 ACS demographic indicators to map how race, income, education, and housing affordability correlate with environmental burden.",
+                file: "final_GIS.pdf",
+                type: "PDF"
+            },
+            {
+                title: "Spatial Analysis of Socio-Economic Factors & Health Outcomes in Chicago",
+                category: "Spatial Analysis Report",
+                year: "2024",
+                desc: "Choropleth mapping and Moran's I spatial autocorrelation analysis of poverty, unemployment, diabetes-related deaths, and infant mortality across Chicago's 77 community areas (2005–2011), using GeoDa and regression modeling to quantify the relationship between economic conditions and public health outcomes.",
+                file: "Chi_spatial_analysis.pdf",
+                type: "PDF"
+            },
+            {
+                title: "Scams and Phishing: Spotting Common Digital Scams",
+                category: "Public Communication / Design",
+                year: "2024",
+                desc: "A designed public-facing infographic identifying common text and digital scam patterns — including missed delivery notifications, impersonation, and phishing — with examples drawn from the Chicago area context. Produced as a community education resource.",
+                file: "Chicago_scams.pdf",
+                type: "PDF"
+            },
+            {
+                title: "Comparing National Biodiversity Policy",
+                category: "Policy Analysis",
+                year: "2024",
+                desc: "A comparative policy analysis examining national biodiversity frameworks across multiple countries, evaluating implementation mechanisms, enforcement structures, and alignment with international conservation commitments.",
+                file: "Comparing National Biodiversity Policy.docx",
+                type: "DOCX"
+            }
+        ];
+
+        // ─── Writing Browser ─────────────────────────────────────────────
+        var activeIndex = -1;
+        var navListEl = document.getElementById('writing-nav-list');
+        var cardPanelEl = document.getElementById('writing-card-panel');
+
+        WRITINGS.forEach(function(piece, i) {
+            var li = document.createElement('li');
+            li.className = 'writing-nav-item';
+            li.setAttribute('role', 'option');
+            li.setAttribute('tabindex', i === 0 ? '0' : '-1');
+            li.innerHTML = '<span class="writing-nav-item-title">' + piece.title + '</span>' +
+                           '<span class="writing-nav-item-year">' + piece.year + '</span>';
+            li.addEventListener('click', function() { selectItem(i); });
+            li.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectItem(i); }
+                if (e.key === 'ArrowDown') { e.preventDefault(); focusItem(i + 1); }
+                if (e.key === 'ArrowUp')   { e.preventDefault(); focusItem(i - 1); }
+            });
+            navListEl.appendChild(li);
+        });
+
+        function focusItem(i) {
+            var items = navListEl.querySelectorAll('.writing-nav-item');
+            i = Math.max(0, Math.min(items.length - 1, i));
+            items[i].focus();
+        }
+
+        function selectItem(i) {
+            activeIndex = i;
+            var items = navListEl.querySelectorAll('.writing-nav-item');
+            items.forEach(function(el, idx) {
+                el.classList.toggle('active', idx === i);
+            });
+            renderCard(WRITINGS[i]);
+        }
+
+        function renderCard(piece) {
+            cardPanelEl.innerHTML =
+                '<div class="writing-card">' +
+                    '<div class="writing-card-top">' +
+                        '<span class="writing-card-badge">' + piece.category + '</span>' +
+                        '<span class="writing-card-year">' + piece.year + '</span>' +
+                    '</div>' +
+                    '<h3 class="writing-card-title">' + piece.title + '</h3>' +
+                    '<p class="writing-card-desc">' + piece.desc + '</p>' +
+                    '<a href="' + piece.file + '" target="_blank" class="ui-btn writing-card-btn">↓ Download ' + piece.type + '</a>' +
+                '</div>';
+        }
+
+        // ─── Writing List ─────────────────────────────────────────────────
+        var listEl = document.getElementById('writing-list');
+        WRITINGS.forEach(function(piece, i) {
+            var row = document.createElement('a');
+            row.className = 'writing-list-row';
+            row.href = piece.file;
+            row.target = '_blank';
+            row.innerHTML =
+                '<span class="writing-list-num">0' + (i + 1) + '</span>' +
+                '<span class="writing-list-title">' + piece.title + '</span>' +
+                '<span class="writing-list-category">' + piece.category + '</span>' +
+                '<span class="writing-list-year">' + piece.year + '</span>' +
+                '<span class="writing-list-link">' + piece.type + ' ↓</span>';
+            listEl.appendChild(row);
+        });
+    </script>
 
 </body>
 </html>

@@ -342,11 +342,18 @@ nav a:first-child {
 }
 
 .pdf-embed {
+    display: block;
     width: 100%;
     height: 800px;
     border: 3px solid #421414;
     box-shadow: 8px 8px 0px #fc5b5b;
     background-color: #fff;
+}
+
+.pdf-download-btn {
+    display: inline-block;
+    margin-top: 12px;
+    text-decoration: none;
 }
 
 /* =========================
@@ -745,5 +752,268 @@ a.contact-item:hover .contact-label {
     }
     .contact-item:last-child {
         border-bottom: none;
+    }
+}
+
+/* =========================
+   WRITING PAGE
+========================= */
+
+/* --- Writing Browser (menu + card) --- */
+.writing-browser {
+    display: flex;
+    gap: 0;
+    border: 3px solid #421414;
+    box-shadow: 8px 8px 0px #421414;
+    margin: 40px 0;
+    min-height: 380px;
+}
+
+.writing-nav {
+    width: 38%;
+    flex-shrink: 0;
+    border-right: 3px solid #421414;
+    display: flex;
+    flex-direction: column;
+}
+
+.writing-nav-header {
+    background-color: #421414;
+    color: #fff;
+    font-family: 'ecraw', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border-bottom: 3px solid #000;
+}
+
+.writing-nav-list {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.writing-nav-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 2px solid #e8e8e8;
+    cursor: pointer;
+    transition: background 0.1s, transform 0.1s, border-left 0.1s;
+    outline: none;
+    user-select: none;
+    border-left: 5px solid transparent;
+}
+
+.writing-nav-item:hover,
+.writing-nav-item:focus {
+    background-color: #fff7e0;
+    border-left-color: #fc5b5b;
+}
+
+.writing-nav-item.active {
+    background-color: #ffd700;
+    border-left: 5px solid #fc5b5b;
+    box-shadow: inset -4px 0 0 #421414;
+}
+
+.writing-nav-item-title {
+    font-weight: bold;
+    font-size: 0.88rem;
+    color: #111;
+    line-height: 1.3;
+    flex: 1;
+}
+
+.writing-nav-item.active .writing-nav-item-title {
+    color: #421414;
+}
+
+.writing-nav-item-year {
+    font-size: 0.75rem;
+    color: #aaa;
+    flex-shrink: 0;
+}
+
+.writing-nav-item.active .writing-nav-item-year {
+    color: #421414;
+}
+
+/* Right panel */
+.writing-card-panel {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    background-color: #fff;
+    min-width: 0;
+}
+
+.writing-card-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* The card itself — mirrors map-card styling */
+.writing-card {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 28px;
+    gap: 14px;
+    flex: 1;
+    border-left: none;
+}
+
+.writing-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.writing-card-badge {
+    background-color: #ffd700;
+    color: #000;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0px #421414;
+    display: inline-block;
+}
+
+.writing-card-year {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.writing-card-title {
+    font-size: 1.25rem;
+    color: #421414;
+    line-height: 1.3;
+    margin: 0;
+    border-bottom: 2px dashed #fc5b5b;
+    padding-bottom: 14px;
+}
+
+.writing-card-desc {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.65;
+    flex: 1;
+    margin: 0;
+}
+
+.writing-card-btn {
+    display: inline-block;
+    align-self: flex-start;
+    text-decoration: none;
+}
+
+/* --- Writing List --- */
+.writing-list-section {
+    margin-bottom: 60px;
+}
+
+.writing-list-section .section-title {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.writing-list {
+    border-top: 3px solid #421414;
+    margin-top: 20px;
+}
+
+.writing-list-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 13px 6px;
+    border-bottom: 1px solid #e8e8e8;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s, padding-left 0.15s;
+}
+
+.writing-list-row:hover {
+    background: #fffde8;
+    padding-left: 14px;
+}
+
+.writing-list-num {
+    font-family: 'ecraw', sans-serif;
+    font-size: 0.75rem;
+    color: #ccc;
+    width: 22px;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.writing-list-title {
+    flex: 1;
+    font-weight: bold;
+    font-size: 0.92rem;
+    color: #111;
+    min-width: 0;
+}
+
+.writing-list-category {
+    font-size: 0.75rem;
+    color: #aaa;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.writing-list-year {
+    font-size: 0.75rem;
+    color: #bbb;
+    flex-shrink: 0;
+    width: 38px;
+    text-align: right;
+}
+
+.writing-list-link {
+    font-size: 0.75rem;
+    color: #421414;
+    font-weight: bold;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    width: 50px;
+    text-align: right;
+}
+
+.writing-list-row:hover .writing-list-link {
+    color: #fc5b5b;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .writing-browser {
+        flex-direction: column;
+    }
+    .writing-nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 3px solid #421414;
+    }
+    .writing-list-category,
+    .writing-list-year {
+        display: none;
     }
 }

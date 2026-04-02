@@ -103,9 +103,8 @@
             } else if (project.type === 'pdf') {
                 contentEl.innerHTML =
                     '<div class="pdf-viewer-wrap">' +
-                        '<object data="' + project.src + '" type="application/pdf" class="pdf-embed">' +
-                            '<p>PDF could not be displayed. <a href="' + project.src + '" target="_blank" class="ui-btn">Open PDF &rarr;</a></p>' +
-                        '</object>' +
+                        '<iframe src="' + project.src + '" class="pdf-embed" title="' + project.title + '"></iframe>' +
+                        '<a href="' + project.src + '" target="_blank" class="ui-btn pdf-download-btn">↓ Download / Open PDF</a>' +
                     '</div>';
             }
 

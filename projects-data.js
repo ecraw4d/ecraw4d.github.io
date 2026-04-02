@@ -45,36 +45,25 @@ const PROJECTS = [
         methodology: "TODO: Add methodology text."
     },
     {
-        id: 4,
-        title: "Custom Transit Map",
-        type: "image",
-        badges: ["Illustrator", "Cartography"],
-        src: "images/hooded_pic.png",             // TODO: replace with final map export
-        thumbnail: "images/hooded_pic.png",
-        desc: "A stylized, schematic subway map created using Adobe Illustrator.",
-        overview: "TODO: Add overview text.",
-        methodology: "TODO: Add methodology text."
-    },
-    {
-        id: 5,
-        title: "Historical Redlining",
+        id: 7,
+        title: "Brazoria County: Historical Plantations to Modern Prisons",
         type: "pdf",
-        badges: ["PDF", "QGIS"],
-        src: "assets/redlining-map.pdf",          // TODO: add PDF to assets/
-        thumbnail: "images/hooded_pic.png",
-        desc: "Digitizing historical maps to analyze modern urban impacts.",
-        overview: "TODO: Add overview text.",
-        methodology: "TODO: Add methodology text."
+        badges: ["Cartography", "ArcGIS Pro", "Labor History"],
+        src: "braz_final_layout.pdf",
+        thumbnail: "images/hooded_pic.png",       // TODO: replace with map thumbnail
+        desc: "A cartographic layout mapping the direct geographic overlap between 19th-century cotton plantations and modern Texas Department of Criminal Justice prison units in Brazoria County, TX.",
+        overview: "This map documents the spatial continuity between the plantation economy of the antebellum South and the contemporary carceral landscape in Brazoria County, Texas. Six modern TDCJ prison units sit on or adjacent to land historically recorded as plantation sites, including the Darrington, Ramsey, Terrell, Stringfellow, Scott, and Clemens Units.",
+        methodology: "Historical plantation boundaries were digitized from archival county records and georeferenced in ArcGIS Pro. Modern prison footprints were sourced from publicly available TDCJ facility data. The final layout was designed in ArcGIS Pro with custom symbology to distinguish plantations with and without co-located prisons."
     },
     {
-        id: 6,
-        title: "Native Plant Sighting Map",
-        type: "iframe",
-        badges: ["Web Map", "Survey123"],
-        src: "",                                  // TODO: add embed URL
-        thumbnail: "images/hooded_pic.png",
-        desc: "Crowdsourced locations of native plants around the UIUC campus.",
-        overview: "TODO: Add overview text.",
-        methodology: "TODO: Add methodology text."
+        id: 8,
+        title: "Socio-Economic Factors & Health Outcomes in Chicago",
+        type: "pdf",
+        badges: ["Spatial Analysis", "GeoDa", "QGIS"],
+        src: "Chi_spatial_analysis.pdf",
+        thumbnail: "images/hooded_pic.png",       // TODO: replace with map thumbnail
+        desc: "Spatial analysis of poverty, unemployment, diabetes-related deaths, and infant mortality across Chicago community areas (2005–2011) using choropleth mapping and Moran's I autocorrelation.",
+        overview: "This project explores how socioeconomic factors like poverty and unemployment correlate with health outcomes — specifically diabetes-related deaths and infant mortality — across Chicago's 77 community areas from 2005 to 2011. Choropleth maps revealed consistent spatial clustering of high-risk conditions in the city's southern community areas.",
+        methodology: "Data was sourced from the GeoDa 'Chicago Health Indicators 2005–2011' dataset. Analysis included Natural Breaks choropleth mapping, Moran's I spatial autocorrelation (rook contiguity weights), scatter plot matrices, and multiple regression for both Diabe_lated (R²=0.592) and Infan_Rate (R²=0.641)."
     }
 ];
