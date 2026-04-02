@@ -101,10 +101,12 @@
                 contentEl.appendChild(img);
 
             } else if (project.type === 'pdf') {
+                var fullUrl = window.location.origin + '/' + project.src;
+                var viewerUrl = 'https://docs.google.com/viewer?url=' + encodeURIComponent(fullUrl) + '&embedded=true';
                 contentEl.innerHTML =
                     '<div class="pdf-viewer-wrap">' +
-                        '<iframe src="' + project.src + '" class="pdf-embed" title="' + project.title + '"></iframe>' +
-                        '<a href="' + project.src + '" target="_blank" class="ui-btn pdf-download-btn">↓ Download / Open PDF</a>' +
+                        '<iframe src="' + viewerUrl + '" class="pdf-embed" title="' + project.title + '"></iframe>' +
+                        '<a href="' + fullUrl + '" target="_blank" class="ui-btn pdf-download-btn">↗ Open PDF</a>' +
                     '</div>';
             }
 
