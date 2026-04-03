@@ -48,7 +48,7 @@ const PROJECTS = [
         id: 7,
         title: "Brazoria County: Historical Plantations to Modern Prisons",
         type: "pdf",
-        badges: ["Cartography", "ArcGIS Pro", "Labor History"],
+        badges: ["Cartography", "ArcGIS Pro", "Illustrator"],
         src: "braz_final_layout.pdf",
         thumbnail: "images/brazoria_thumb.png",       // TODO: replace with map thumbnail
         desc: "A cartographic layout mapping the direct geographic overlap between 19th-century cotton plantations and modern Texas Department of Criminal Justice prison units in Brazoria County, TX.",
@@ -70,7 +70,7 @@ const PROJECTS = [
         id: 9,
         title: "Spatial Analysis of Environmental Health Risks in Seattle",
         type: "pdf",
-        badges: ["GIS Research", "QGIS", "Intersectional Analysis"],
+        badges: ["Public Health", "QGIS", "Intersectional Analysis"],
         src: "final_GIS.pdf",
         thumbnail: "images/seattle_map_pic.png",
         desc: "An intersectional GIS analysis of environmental health risks across Seattle census tracts, combining noise, air toxicity, water toxicity, and PM2.5 data with demographic indicators.",
