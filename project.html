@@ -102,7 +102,7 @@
 
             } else if (project.type === 'pdf') {
                 var fullUrl = window.location.origin + '/' + project.src;
-                var viewerUrl = 'https://docs.google.com/viewer?url=' + encodeURIComponent(fullUrl) + '&embedded=true';
+                var viewerUrl = 'https://docs.google.com/viewer?url=' + encodeURIComponent(fullUrl) + '&embedded=true&t=' + Date.now();
                 contentEl.innerHTML =
                     '<div class="pdf-viewer-wrap">' +
                         '<iframe src="' + viewerUrl + '" class="pdf-embed" title="' + project.title + '"></iframe>' +
