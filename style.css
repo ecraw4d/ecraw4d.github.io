@@ -1022,18 +1022,15 @@ a.contact-item:hover .contact-label {
    RANDOM PROJECT PANEL (homepage)
 ========================= */
 .random-project-panel {
-    margin-top: 30px;
-    max-width: 50%;
+    margin-top: 20px;
 }
 
-.random-project-panel #random-project-card {
-    margin-top: 16px;
+.random-project-panel #random-project-btn {
+    margin-top: 12px;
 }
 
-@media (max-width: 768px) {
-    .random-project-panel {
-        max-width: 100%;
-    }
+.random-project-panel #random-project-card:empty + #random-project-btn {
+    margin-top: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
