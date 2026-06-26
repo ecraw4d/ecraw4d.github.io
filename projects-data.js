@@ -67,6 +67,17 @@ const PROJECTS = [
         methodology: "Data was sourced from the GeoDa 'Chicago Health Indicators 2005–2011' dataset. Analysis included Natural Breaks choropleth mapping, Moran's I spatial autocorrelation (rook contiguity weights), scatter plot matrices, and multiple regression for both Diabe_lated (R²=0.592) and Infan_Rate (R²=0.641)."
     },
     {
+        id: 10,
+        title: "Sentinel-2, Sentinel-1 SAR, and Random Forest classification at Warbler Ridge Conservation Area, 2017-2024",
+        type: "pdf",
+        badges: ["Remote Sensing", "Google Earth Engine"],
+        src: "crawford-ProjectReport.pdf",
+        thumbnail: "images/rm_warbler_thumb.png",
+        desc: "Small land trusts protect a lot of restored land across the Midwest, but they rarely have the resources to monitor restoration outcomes systematically. This project asks whether free satellite imagery and a simple machine learning workflow can fill that gap. I used Sentinel-2 optical imagery and Sentinel-1 synthetic aperture radar (SAR) to map land cover at Warbler Ridge Conservation Area (WRCA), a 447-hectare property in Coles County, Illinois owned by Grand Prairie Friends, for five years between 2017 and 2024.",
+        overview: "TODO",
+        methodology: "TODO"
+    },
+    {
         id: 9,
         title: "Spatial Analysis of Environmental Health Risks in Seattle",
         type: "pdf",

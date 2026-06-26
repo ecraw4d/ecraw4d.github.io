@@ -1017,3 +1017,31 @@ a.contact-item:hover .contact-label {
         display: none;
     }
 }
+
+/* =========================
+   RANDOM PROJECT PANEL (homepage)
+========================= */
+.random-project-panel {
+    margin-top: 30px;
+    max-width: 50%;
+}
+
+.random-project-panel #random-project-card {
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .random-project-panel {
+        max-width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .map-card {
+        transition: none;
+    }
+    .map-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}

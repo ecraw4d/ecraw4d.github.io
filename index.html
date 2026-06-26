@@ -37,8 +37,34 @@
 
         </div>
 
-        <p>Check it all out.</p>
+        <div class="random-project-panel">
+            <button class="ui-btn" id="random-project-btn" aria-label="Show a random project">↻ random project</button>
+            <div id="random-project-card" aria-live="polite" aria-atomic="true"></div>
+        </div>
     </div>
 
+    <script src="projects-data.js"></script>
+    <script>
+        (function () {
+            var lastId = null;
+            document.getElementById('random-project-btn').addEventListener('click', function () {
+                var pool = PROJECTS.filter(function (p) { return p.id !== lastId; });
+                var project = pool[Math.floor(Math.random() * pool.length)];
+                lastId = project.id;
+                var badge = project.badges && project.badges[0] ? '<span class="map-badge">' + project.badges[0] + '</span>' : '';
+                document.getElementById('random-project-card').innerHTML =
+                    '<a href="project.html?id=' + project.id + '" class="map-card">' +
+                        '<div class="map-image-wrapper">' +
+                            '<img src="' + project.thumbnail + '" alt="' + project.title + '">' +
+                            badge +
+                        '</div>' +
+                        '<div class="map-info">' +
+                            '<h3>' + project.title + '</h3>' +
+                            '<p>' + project.desc + '</p>' +
+                        '</div>' +
+                    '</a>';
+            });
+        }());
+    </script>
 </body>
 </html>
