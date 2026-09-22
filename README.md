@@ -115,7 +115,7 @@ Open `style.css`. The **THEME** block at the top controls almost everything:
 --paper:  #fedede;   /* main content panel */
 --card:   #ffffff;   /* cards/boxes */
 --border-w: 3px;     /* thickness of every border */
---shadow: 6px 6px 0 var(--maroon);   /* the hard drop shadow */
+--shadow: 6px 6px 0 var(--maroon);   /* the hard drop shadow on framed maps */
 --max-width: 1400px; /* content width on big screens */
 ```
 

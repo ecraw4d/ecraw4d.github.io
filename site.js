@@ -73,15 +73,6 @@ function pageHome() {
     const featured = PROJECTS.filter((p) => p.featured);
     const box = $("#featured");
     if (box) box.innerHTML = featured.map(cardHTML).join("");
-
-    let last = null;
-    const btn = $("#random-btn");
-    if (btn) btn.addEventListener("click", () => {
-        const pool = PROJECTS.filter((p) => p.slug !== last);
-        const p = pool[Math.floor(Math.random() * pool.length)];
-        last = p.slug;
-        $("#random-card").innerHTML = cardHTML(p);
-    });
 }
 
 

@@ -34,7 +34,6 @@
     --border-w:     3px;
     --border:       var(--border-w) solid var(--maroon);
     --shadow:       6px 6px 0 var(--maroon);
-    --shadow-hover: 8px 8px 0 var(--red);
     --lift:         translate(-4px, -4px);   /* how far cards jump on hover */
 
     /* Layout */
@@ -147,9 +146,9 @@ p  { margin-bottom: 14px; }
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
-    transition: transform .15s, box-shadow .15s, background .15s;
+    transition: transform .15s, background .15s;
 }
-.btn:hover { background: var(--red); color: var(--ink); transform: var(--lift); box-shadow: 4px 4px 0 var(--ink); }
+.btn:hover { background: var(--red); color: var(--ink); transform: var(--lift); }
 .btn.outline { background: var(--card); color: var(--maroon); border-color: var(--maroon); }
 .btn.outline:hover { background: var(--red); color: var(--ink); }
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
@@ -187,8 +186,17 @@ a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
 .home-headline { font-family: var(--font-display); color: var(--maroon); margin-bottom: 14px; }
 .home-bio p { font-size: 0.95rem; color: var(--muted); max-width: 65ch; }
 
-.random-panel { margin-top: 24px; }
-.random-panel .project-card { margin-bottom: 12px; }
+/* "What I'm working on now" box (right column) */
+.now-box { background: var(--card); border: var(--border); margin-bottom: var(--gap); }
+.now-box h2 {
+    background: var(--maroon); color: #fff;
+    font-family: var(--font-display); font-weight: normal; text-transform: uppercase;
+    font-size: 0.9rem; letter-spacing: 1px;
+    padding: 8px 14px; margin: 0;
+}
+.now-box ul { list-style: square; padding: 12px 14px 0 32px; font-size: 0.95rem; }
+.now-box li { margin-bottom: 8px; }
+.now-box .updated { font-size: 0.75rem; color: var(--muted); padding: 0 14px 10px; margin: 0; }
 
 
 /* =====================================================================
@@ -208,9 +216,9 @@ a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    transition: transform .15s, box-shadow .15s;
+    transition: transform .15s;
 }
-.project-card:hover { color: inherit; transform: var(--lift); box-shadow: var(--shadow-hover); }
+.project-card:hover { color: inherit; transform: var(--lift); }
 
 .project-card .thumb {
     position: relative;
