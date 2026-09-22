@@ -161,7 +161,7 @@ p  { margin-bottom: 14px; }
     padding: 2px 8px;
     font-size: 0.75rem;
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: lowercase;
     text-decoration: none;
 }
 a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
@@ -182,7 +182,7 @@ a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
 .home-grid .side-photo { max-height: 85vh; }
 .home-grid .portrait { aspect-ratio: 3 / 2; margin-bottom: 16px; }
 .home-grid .caption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
-.home-name { font-family: var(--font-body); text-transform: uppercase; font-size: 1.6rem; margin-bottom: 4px; }
+.home-name { font-family: var(--font-body); text-transform: lowercase; font-size: 1.6rem; margin-bottom: 4px; }
 .home-headline { font-family: var(--font-display); color: var(--maroon); margin-bottom: 14px; }
 .home-bio p { font-size: 0.95rem; color: var(--muted); max-width: 65ch; }
 
@@ -190,7 +190,7 @@ a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
 .now-box { background: var(--card); border: var(--border); margin-bottom: var(--gap); }
 .now-box h2 {
     background: var(--maroon); color: #fff;
-    font-family: var(--font-display); font-weight: normal; text-transform: uppercase;
+    font-family: var(--font-display); font-weight: normal; text-transform: lowercase;
     font-size: 0.9rem; letter-spacing: 1px;
     padding: 8px 14px; margin: 0;
 }
@@ -237,7 +237,7 @@ a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
     padding: 2px 8px;
     font-size: 0.7rem;
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: lowercase;
 }
 .project-card .info { padding: 14px; }
 .project-card h3 { font-size: 1.1rem; }
