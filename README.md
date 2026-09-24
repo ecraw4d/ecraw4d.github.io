@@ -168,7 +168,7 @@ GitHub Pages rebuilds automatically. `CNAME` keeps the site on ecraw.com; don't 
 
 ```
 solidarity.html                 Archive home: search, browse by year, downloads
-solidarity/archive.js           Archive code. ARCHIVE.iaLive switches the scan viewer on
+solidarity/archive.js           Archive code. The ARCHIVE settings at the top control downloads and the scan viewer
 solidarity/issues/*.html        One generated page per issue (don't edit by hand)
 solidarity/issues.json          Generated catalog
 solidarity/pagefind/            Generated search index
@@ -184,6 +184,10 @@ python3 -m venv ~/site-env && ~/site-env/bin/pip install "pagefind[extended]"   
 Each rebuild replaces the search index (about 27 MB), and git keeps every old copy. So rebuild when something actually changed, not on every commit.
 
 **Scans** live on the Internet Archive. See `UPLOAD_GUIDE.md` in the solidarity_archive folder.
-After uploading, set `iaLive: true` in `solidarity/archive.js`.
+The `ARCHIVE` settings at the top of `solidarity/archive.js`:
+- `files: true` shows the PDF and text download links on issue pages (set it to `false` to hide them).
+- `yearFiles` shows the full-year PDF buttons on the archive home page. Turn it on once all 9 yearly items are on the Archive.
+- `viewer: "auto"` shows the Internet Archive's page viewer on an issue page once the Archive has made that issue's page images, and a "view scan (PDF)" link on each page until then. Use `"on"` or `"off"` to force it.
+- Add `?preview` to an issue page's address to force the viewer on for that one visit.
 
 **Styling** for the archive is section 10 of `style.css`. The intro and "About this archive" text are in `solidarity.html`.

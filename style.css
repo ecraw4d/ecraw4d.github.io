@@ -373,6 +373,13 @@ a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
 /* =====================================================================
    10. Solidarity newspaper archive (solidarity.html + solidarity/issues/)
    ===================================================================== */
+/* Top of the archive page: intro + search on the left, drawing on the right */
+.archive-top { display: grid; grid-template-columns: 1fr 260px; gap: 32px; align-items: end; }
+.archive-art { width: 100%; height: auto; display: block; }
+@media (max-width: 760px) {
+    .archive-top { grid-template-columns: 1fr; }
+    .archive-art { width: 160px; order: -1; }   /* smaller, above the title on phones */
+}
 .archive-search { display: flex; gap: 8px; margin: 20px 0 8px; max-width: 760px; }
 .archive-search input {
     flex: 1;

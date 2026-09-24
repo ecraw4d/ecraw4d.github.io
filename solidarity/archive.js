@@ -4,13 +4,19 @@
    ===================================================================== */
 
 const ARCHIVE = {
-    // Flip to true once the issues are uploaded to the Internet Archive.
-    // Until then, issue pages show the text only (no scan viewer or PDF links).
-    iaLive: false,
+    // The PDFs and text files are on the Internet Archive, so show download links.
+    files: true,
+    // Full-year PDF buttons on the archive home page. Turn on once all 9 yearly items are uploaded.
+    yearFiles: false,
+    // Scan viewer. "auto" shows it once the Internet Archive has made the page images for
+    // an issue (it checks each time the page opens), and a PDF link until then.
+    // "on" always shows it; "off" never does.
+    viewer: "auto",
     resultsPerPage: 15,
 };
 
 const IA = {
+    files:    (id) => `https://archive.org/metadata/${id}/files`,
     viewer:   (id, page = 1, q = "") => `https://archive.org/embed/${id}/page/n${page - 1}/mode/1up${q ? `?q=${encodeURIComponent(q)}` : ""}`,
     details:  (id) => `https://archive.org/details/${id}`,
     download: (id, file) => `https://archive.org/download/${id}/${encodeURIComponent(file)}`,
@@ -115,7 +121,7 @@ async function archiveHome() {
     const dl = $("#downloads");
     if (dl) dl.innerHTML =
         `<a class="btn" href="solidarity/solidarity-ocr-text.zip">↓ All OCR text (zip)</a>` +
-        (ARCHIVE.iaLive ? years.filter((y) => data.years[y].file).map((y) =>
+        (ARCHIVE.files && ARCHIVE.yearFiles ? years.filter((y) => data.years[y].file).map((y) =>
             `<a class="btn outline" href="${IA.download(data.years[y].ia, data.years[y].file)}">↓ ${y} (PDF)</a>`).join("") : "");
 
     drawYears(); update();
@@ -125,41 +131,25 @@ async function archiveHome() {
 /* ---------------------------------------------------------------------
    Issue page: scan viewer + highlighted text
    --------------------------------------------------------------------- */
-function archiveIssue() {
+// Has the Internet Archive finished making page images (needed by its viewer) for this item?
+async function viewerReady(id) {
+    if (ARCHIVE.viewer === "on" || new URLSearchParams(location.search).has("preview")) return true;
+    if (ARCHIVE.viewer === "off") return false;
+    try {
+        const r = await fetch(IA.files(id)).then((res) => res.json());
+        return (r.result || []).some((f) => /_jp2\.zip$|_page_numbers\.json$/.test(f.name));
+    } catch {
+        return true;   // couldn't check (offline, blocked): assume it's ready
+    }
+}
+
+async function archiveIssue() {
     const box = $("#issue");
     const { ia, file, txt } = box.dataset;
     const pages = +box.dataset.pages;
     const q = new URLSearchParams(location.search).get("q") || "";
-    let page = +(location.hash.match(/^#p(\d+)$/) || [0, 1])[1];
-
-    if (ARCHIVE.iaLive) {
-        box.innerHTML = `
-            <div class="page-picker">Page: ${Array.from({ length: pages }, (_, n) =>
-                `<button class="tag" data-p="${n + 1}">${n + 1}</button>`).join("")}</div>
-            <div class="media-block"><iframe class="frame issue-viewer" title="Scan" allowfullscreen></iframe></div>
-            <div class="btn-row">
-                <a class="btn" href="${IA.download(ia, file)}">↓ PDF</a>
-                <a class="btn outline" href="${IA.download(ia, txt)}">↓ Text</a>
-                <a class="btn outline" href="${IA.details(ia)}" target="_blank" rel="noopener">Internet Archive ↗</a>
-            </div>`;
-        const frame = box.querySelector("iframe");
-        const show = (p) => {
-            page = p;
-            frame.src = IA.viewer(ia, p, q);
-            box.querySelectorAll("[data-p]").forEach((b) => b.classList.toggle("active", +b.dataset.p === p));
-        };
-        box.addEventListener("click", (e) => { if (e.target.dataset.p) show(+e.target.dataset.p); });
-        document.querySelectorAll(".ocr-page-title").forEach((h) => {
-            const p = +h.id.slice(1);
-            h.insertAdjacentHTML("beforeend", ` <button class="tag" data-view="${p}">view scan</button>`);
-        });
-        document.addEventListener("click", (e) => {
-            if (e.target.dataset.view) { show(+e.target.dataset.view); box.scrollIntoView({ behavior: "smooth" }); }
-        });
-        show(page);
-    } else {
-        box.innerHTML = `<p class="ocr-note">Page scans and PDF downloads are coming soon.</p>`;
-    }
+    const page = +(location.hash.match(/^#p(\d+)$/) || [0, 1])[1];
+    const pdf = IA.download(ia, file);
 
     // Highlight the search words in the text
     if (q) {
@@ -167,8 +157,47 @@ function archiveIssue() {
         const re = new RegExp(`\\b(${words.join("|")})`, "gi");
         document.querySelectorAll(".ocr-page").forEach((el) => { el.innerHTML = el.innerHTML.replace(re, "<mark>$1</mark>"); });
     }
-    // Scroll to the page in the text if the link asked for one
-    if (location.hash) (ARCHIVE.iaLive ? box : document.querySelector(location.hash))?.scrollIntoView();
+
+    if (!ARCHIVE.files) {
+        box.innerHTML = `<p class="ocr-note">Page scans and PDF downloads are coming soon.</p>`;
+        if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+        return;
+    }
+
+    const downloads = `
+        <div class="btn-row">
+            <a class="btn" href="${pdf}">↓ PDF</a>
+            <a class="btn outline" href="${IA.download(ia, txt)}">↓ Text</a>
+            <a class="btn outline" href="${IA.details(ia)}" target="_blank" rel="noopener">Internet Archive ↗</a>
+        </div>`;
+    box.innerHTML = downloads;
+    const titles = document.querySelectorAll(".ocr-page-title");
+
+    if (await viewerReady(ia)) {
+        box.innerHTML = `
+            <div class="page-picker">Page: ${Array.from({ length: pages }, (_, n) =>
+                `<button class="tag" data-p="${n + 1}">${n + 1}</button>`).join("")}</div>
+            <div class="media-block"><iframe class="frame issue-viewer" title="Scan" allowfullscreen></iframe></div>` + downloads;
+        const frame = box.querySelector("iframe");
+        const show = (p) => {
+            frame.src = IA.viewer(ia, p, q);
+            box.querySelectorAll("[data-p]").forEach((b) => b.classList.toggle("active", +b.dataset.p === p));
+        };
+        box.addEventListener("click", (e) => { if (e.target.dataset.p) show(+e.target.dataset.p); });
+        titles.forEach((h) => h.insertAdjacentHTML("beforeend", ` <button class="tag" data-view="${h.id.slice(1)}">view scan</button>`));
+        document.addEventListener("click", (e) => {
+            if (e.target.dataset.view) { show(+e.target.dataset.view); box.scrollIntoView({ behavior: "smooth" }); }
+        });
+        show(page);
+        if (location.hash) box.scrollIntoView();
+    } else {
+        // No viewer yet: link each page to that page of the PDF instead
+        box.insertAdjacentHTML("afterbegin",
+            `<p class="ocr-note">The page viewer is still being prepared by the Internet Archive. Until then, the scans open as a PDF.</p>`);
+        titles.forEach((h) => h.insertAdjacentHTML("beforeend",
+            ` <a class="tag" href="${pdf}#page=${h.id.slice(1)}" target="_blank" rel="noopener">view scan (PDF)</a>`));
+        if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+    }
 }
 
 
