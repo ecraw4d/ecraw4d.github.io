@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solidarity Newspaper Archive | Ethan Crawford</title>
+    <meta name="description" content="Full-text search of Solidarity, the weekly newspaper of the Industrial Workers of the World (IWW), 1909–1917.">
+    <meta property="og:title" content="Solidarity Newspaper Archive | Ethan Crawford">
+    <meta property="og:description" content="Full-text search of Solidarity, the weekly newspaper of the Industrial Workers of the World (IWW), 1909–1917.">
+    <meta property="og:image" content="https://ecraw.com/images/portrait.webp">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="preload" href="fonts/ecraw.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="solidarity">
+    <nav id="site-nav"></nav>
+
+    <main class="container">
+        <h1>Solidarity newspaper archive</h1>
+        <!-- INTRO: edit freely -->
+        <p class="lead">Solidarity was the weekly newspaper of the Industrial Workers of the World (IWW) from 1909 to 1917.
+        This archive makes the full text of every surviving issue keyword-searchable. Search it below, or browse by year.</p>
+
+        <form class="archive-search" id="search-form" role="search">
+            <input id="search-input" type="search" placeholder="Search the full text, e.g. free speech fight" autocomplete="off" aria-label="Search Solidarity">
+            <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="filter-bar" id="year-filter"></div>
+        <p class="search-status" id="search-status"></p>
+
+        <div id="results"></div>
+        <button class="btn outline" id="more-results" hidden>More results</button>
+
+        <h2 class="section-title">Downloads</h2>
+        <div class="btn-row" id="downloads"></div>
+
+        <h2 class="section-title">About this archive</h2>
+        <div class="writeup">
+            <!-- METHODS: edit freely -->
+            <p>Page scans come from the <a href="https://depts.washington.edu/iww/solidarity_intro.shtml" target="_blank" rel="noopener">Mapping American Social Movements Project</a> at the University of Washington.
+            I ran them through Google Document AI's optical character recognition (OCR) to make the text searchable. The text is uncorrected machine output,
+            so expect misspellings and columns that run together. Always check a passage against the scan before quoting it.</p>
+        </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+    <script src="projects.js"></script>
+    <script src="site.js"></script>
+    <script src="solidarity/archive.js"></script>
+</body>
+</html>

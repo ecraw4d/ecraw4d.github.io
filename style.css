@@ -10,6 +10,7 @@
    7. Project page
    8. Resume
    9. Small screens
+   10. Solidarity newspaper archive
    ===================================================================== */
 
 
@@ -117,6 +118,34 @@ p  { margin-bottom: 14px; }
 .site-nav a[aria-current="page"] { color: var(--red); text-decoration: underline; }
 .site-nav .brand { font-size: 1.5rem; letter-spacing: 2px; margin-right: auto; }
 
+/* "more" dropdown in the nav */
+.nav-menu { position: relative; }
+.nav-menu summary {
+    font-family: var(--font-display);
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    list-style: none;               /* hide the default triangle */
+}
+.nav-menu summary::-webkit-details-marker { display: none; }
+.nav-menu summary::after { content: " ▾"; }
+.nav-menu[open] summary::after { content: " ▴"; }
+.nav-menu summary:hover,
+.nav-menu summary.current { color: var(--red); text-decoration: underline; }
+.nav-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 16px);
+    z-index: 1000;                  /* stay above maps */
+    background: var(--maroon);
+    border: 3px ridge #ff0000;
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+}
+.nav-dropdown a { padding: 10px 14px; white-space: nowrap; }
+.nav-dropdown a + a { border-top: 1px solid rgba(255, 255, 255, .2); }
+
 .site-footer {
     background: var(--maroon);
     color: #fff;
@@ -182,7 +211,7 @@ a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
 .home-grid .side-photo { max-height: 85vh; }
 .home-grid .portrait { aspect-ratio: 3 / 2; margin-bottom: 16px; }
 .home-grid .caption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
-.home-name { font-family: var(--font-body); text-transform: lowercase; font-size: 1.6rem; margin-bottom: 4px; }
+.home-name { font-family: var(--font-body); font-size: 1.6rem; margin-bottom: 4px; }
 .home-headline { font-family: var(--font-display); color: var(--maroon); margin-bottom: 14px; }
 .home-bio p { font-size: 0.95rem; color: var(--muted); max-width: 65ch; }
 
@@ -338,6 +367,59 @@ a.tag:hover, .tag.active { background: var(--maroon); color: #fff; }
     .resume-hero .who { border-right: none; border-bottom: 4px solid var(--maroon); }
     .contact-strip > * { border-right: none; border-bottom: var(--border); }
     .site-nav .brand { width: 100%; }
+}
+
+
+/* =====================================================================
+   10. Solidarity newspaper archive (solidarity.html + solidarity/issues/)
+   ===================================================================== */
+.archive-search { display: flex; gap: 8px; margin: 20px 0 8px; max-width: 760px; }
+.archive-search input {
+    flex: 1;
+    font: inherit;
+    padding: 8px 12px;
+    border: var(--border);
+    background: var(--card);
+}
+.archive-search input:focus { outline: 3px solid var(--red); outline-offset: 0; }
+.search-status { font-family: var(--font-display); color: var(--maroon); }
+
+.year-head { font-family: var(--font-display); font-weight: normal; margin: 24px 0 8px; }
+.issue-row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px;
+    background: var(--card);
+    border: 2px solid var(--maroon);
+    border-bottom-width: 0;
+    padding: 8px 12px;
+    color: var(--ink);
+    text-decoration: none;
+}
+.issue-row:last-child, .issue-row:has(+ .year-head) { border-bottom-width: 2px; }
+.issue-row:hover { background: var(--maroon); color: #fff; }
+.issue-row .date { font-weight: bold; min-width: 170px; }
+.issue-row .nums, .result .nums { font-size: 0.85rem; color: inherit; opacity: .75; }
+
+.result { background: var(--card); border: var(--border); padding: 12px 16px; margin-bottom: 14px; }
+.result-title { font-weight: bold; font-size: 1.1rem; margin-right: 10px; }
+.result-page { display: block; color: var(--ink); text-decoration: none; font-size: 0.9rem; padding: 6px 0 0; border-top: 1px dashed var(--maroon); margin-top: 6px; }
+.result-page:hover { background: var(--paper); }
+.result-page b { font-family: var(--font-display); font-weight: normal; color: var(--maroon); margin-right: 6px; }
+mark { background: var(--red); color: var(--ink); padding: 0 2px; }
+
+.page-picker { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 12px; font-family: var(--font-display); }
+.page-picker button, .ocr-page-title button { font: inherit; font-size: 0.75rem; cursor: pointer; }
+.issue-viewer { width: 100%; height: 85vh; min-height: 520px; display: block; }
+
+.ocr-note { font-size: 0.85rem; color: var(--muted); }
+.ocr-page-title { font-family: var(--font-display); font-weight: normal; font-size: 1.1rem; margin: 28px 0 8px; }
+.ocr-page {
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    background: var(--card);
+    border: 2px solid var(--maroon);
+    padding: 16px;
+    max-width: 90ch;
 }
 
 @media (prefers-reduced-motion: reduce) {

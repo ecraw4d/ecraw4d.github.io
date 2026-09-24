@@ -12,10 +12,17 @@ const SETTINGS = {
     resumePdf: "Ethan_Crawford_Resume_s26.pdf",
 
     // Top navigation. Add, remove or reorder links here.
+    // A link with "children" becomes a dropdown menu.
     nav: [
         { label: "projects", href: "projects.html" },
         { label: "resume",   href: "resume.html" },
-        // { label: "photography", href: "photography.html" },
+        { label: "about",    href: "about.html" },
+        { label: "more", children: [
+            { label: "writing",                      href: "writing.html" },
+            { label: "designs",                      href: "designs.html" },
+            { label: "solidarity newspaper archive", href: "solidarity.html" },
+            // { label: "photography", href: "photography.html" },
+        ]},
     ],
 };
 
@@ -46,15 +53,26 @@ function cardHTML(p) {
 
 /* ---------- nav + footer (every page) ---------- */
 function renderChrome() {
-    const here = location.pathname.split("/").pop() || "index.html";
+    // Pages in subfolders (e.g. solidarity/issues/) set <body data-root="../../"> so links still work.
+    const root = document.body.dataset.root || "";
+    const here = location.pathname.includes("/solidarity/") ? "solidarity.html"
+               : (location.pathname.split("/").pop() || "index.html");
     const nav = $("#site-nav");
     if (nav) {
         nav.className = "site-nav";
+        const isHere = (l) => here === l.href || (here === "project.html" && l.href === "projects.html");
+        const link = (l) => `<a href="${root}${l.href}"${isHere(l) ? ' aria-current="page"' : ""}>${esc(l.label)}</a>`;
         nav.innerHTML =
-            `<a class="brand" href="index.html">ecraw.com</a>` +
-            SETTINGS.nav.map((l) =>
-                `<a href="${l.href}"${here === l.href || (here === "project.html" && l.href === "projects.html") ? ' aria-current="page"' : ""}>${esc(l.label)}</a>`
+            `<a class="brand" href="${root}index.html">ecraw.com</a>` +
+            SETTINGS.nav.map((l) => l.children
+                ? `<details class="nav-menu"><summary${l.children.some(isHere) ? ' class="current"' : ""}>${esc(l.label)}</summary>` +
+                  `<div class="nav-dropdown">${l.children.map(link).join("")}</div></details>`
+                : link(l)
             ).join("");
+        // Close an open dropdown when clicking anywhere else
+        document.addEventListener("click", (e) => {
+            nav.querySelectorAll("details[open]").forEach((d) => { if (!d.contains(e.target)) d.open = false; });
+        });
     }
     const foot = $("#site-footer");
     if (foot) {
@@ -62,7 +80,7 @@ function renderChrome() {
         foot.innerHTML = `
             <a href="mailto:${SETTINGS.email}">${SETTINGS.email}</a>
             <a href="${SETTINGS.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="${SETTINGS.resumePdf}" target="_blank">Resume (PDF)</a>
+            <a href="${root}${SETTINGS.resumePdf}" target="_blank">Resume (PDF)</a>
             <span class="spacer">© ${new Date().getFullYear()} Ethan Crawford</span>`;
     }
 }

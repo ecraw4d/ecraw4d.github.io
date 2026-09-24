@@ -13,6 +13,10 @@ projects.html       Project gallery (cards + topic filter)
 project.html        ONE template that shows any project: project.html?p=<slug>
 resume.html         Resume (the text is written directly in this file)
 photography.html    Placeholder, currently not in the nav
+about.html          About me (placeholder)
+writing.html        Writing samples (placeholder)
+designs.html        Graphic design work (placeholder)
+solidarity.html     Solidarity newspaper archive (placeholder)
 404.html            "Page not found" page
 maps.html           Old URL; redirects to projects.html
 
@@ -137,7 +141,7 @@ Tip: in Chrome, right-click → **Inspect**. You can edit CSS live in the Styles
 
 | I want to… | Edit |
 |---|---|
-| Change nav links | `SETTINGS.nav` at the top of `site.js` (photography is commented out; remove the `//` to show it) |
+| Change nav links | `SETTINGS.nav` at the top of `site.js`. A link with `children: [...]` becomes a dropdown (like **more**). Photography is commented out; remove the `//` to show it. |
 | Change email / LinkedIn / resume PDF link | `SETTINGS` in `site.js` **and** the contact strip + button in `resume.html` |
 | Update the resume PDF | Replace `Ethan_Crawford_Resume_s26.pdf` (same name) or change `resumePdf` in `site.js` + the link in `resume.html` |
 | Add a job | Copy a `<div class="entry">` block in `resume.html` (newest first) |
@@ -157,3 +161,29 @@ git push
 ```
 
 GitHub Pages rebuilds automatically. `CNAME` keeps the site on ecraw.com; don't delete it.
+
+---
+
+## 7. Solidarity newspaper archive
+
+```
+solidarity.html                 Archive home: search, browse by year, downloads
+solidarity/archive.js           Archive code. ARCHIVE.iaLive switches the scan viewer on
+solidarity/issues/*.html        One generated page per issue (don't edit by hand)
+solidarity/issues.json          Generated catalog
+solidarity/pagefind/            Generated search index
+solidarity/solidarity-ocr-text.zip   Generated download of all OCR text
+tools/solidarity/build_archive.py    Makes all of the generated files above
+```
+
+**Rebuild** after changing the text files, file names, or the page template in the script:
+```
+python3 -m venv ~/site-env && ~/site-env/bin/pip install "pagefind[extended]"   # first time only
+~/site-env/bin/python tools/solidarity/build_archive.py ~/solidarity_archive
+```
+Each rebuild replaces the search index (about 27 MB), and git keeps every old copy. So rebuild when something actually changed, not on every commit.
+
+**Scans** live on the Internet Archive. See `UPLOAD_GUIDE.md` in the solidarity_archive folder.
+After uploading, set `iaLive: true` in `solidarity/archive.js`.
+
+**Styling** for the archive is section 10 of `style.css`. The intro and "About this archive" text are in `solidarity.html`.
